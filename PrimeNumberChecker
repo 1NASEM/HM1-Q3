@@ -1,0 +1,67 @@
+using System;
+
+class PrimeNumberChecker
+{
+    static bool IsPrime(int number)
+    {
+        if (number <= 1)
+        {
+            return false;
+        }
+
+        for (int i = 2; i <= Math.Sqrt(number); i++)
+        {
+            if (number % i == 0)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    static void Main(string[] args)
+    {
+        bool validInput = false;
+        int inputNumber = 0;
+
+        
+        while (!validInput)
+        {
+            
+            Console.Write("Enter a number: ");
+            string input = Console.ReadLine();
+
+            
+            try
+            {
+                inputNumber = int.Parse(input);
+                validInput = true; 
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid input. Please enter a valid number.");
+            }
+
+            
+            if (inputNumber < 0)
+            {
+                Console.WriteLine("Invalid input. Please enter a non-negative number.");
+                validInput = false; 
+            }
+        }
+
+        
+        bool isPrime = IsPrime(inputNumber);
+
+        
+        if (isPrime)
+        {
+            Console.WriteLine(inputNumber + $" is a prime number.");
+        }
+        else
+        {
+            Console.WriteLine(inputNumber + $" is not a prime number.");
+        }
+    }
+}
